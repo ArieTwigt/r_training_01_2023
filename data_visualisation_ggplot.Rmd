@@ -1,0 +1,69 @@
+---
+title: "credit_application_visusualisation"
+author: "Arie Twigt"
+date: "1/23/2023"
+output: html_document
+---
+
+# Load the required libraries
+
+
+```{r}
+library(ggplot2)
+```
+
+
+# Import the dataset
+
+
+```{r}
+data <- read.csv("~/Projects/r_training/data/german_data_clean.csv")
+```
+
+
+# Visualisations
+
+
+## Age vs Credit amount
+
+```{r}
+plot_1 <- ggplot(data, aes(x = age_years, y = credit_amount))
+```
+
+```{r}
+plot_1 + geom_point()
+```
+
+
+> This is a comment
+
+
+## Bar chart
+
+
+```{r}
+plot_2 <- ggplot(data, aes(credit_amount))
+```
+
+```{r}
+plot_2 + geom_histogram(bins=10,
+                        color="orange",
+                        fill="darkblue")
+```
+
+```{r}
+plot_3 <- ggplot(data, aes(credit_amount))
+```
+
+
+```{r}
+plot_3 + geom_density(fill = "darkblue",
+                      color = "orange") + 
+         geom_vline(aes(xintercept=mean(credit_amount),
+                        color="red",
+                        size=0.5,
+                        alpha=0.3)
+                    )
+```
+
+

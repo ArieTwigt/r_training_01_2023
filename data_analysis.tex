@@ -1,0 +1,1938 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Loan Application Analysis},
+  pdfauthor={Arie Twigt},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{Loan Application Analysis}
+\author{Arie Twigt}
+\date{}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+\hypertarget{data-analysis}{%
+\section{Data analysis}\label{data-analysis}}
+
+\hypertarget{dimensions}{%
+\subsection{Dimensions}\label{dimensions}}
+
+The dimensions of the dataset
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{dim}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1000   21
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{nrow}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ncol}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 21
+\end{verbatim}
+
+The data set has the following columns:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{colnames}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "checking_account"          "duration_months"          
+##  [3] "credit_history"            "purpose"                  
+##  [5] "credit_amount"             "savings"                  
+##  [7] "present_employment_since"  "installment_rate"         
+##  [9] "personal_status_sex"       "other_deptors"            
+## [11] "present_residence"         "property"                 
+## [13] "age_years"                 "other_installment_plans"  
+## [15] "housing"                   "existing_credits"         
+## [17] "job"                       "people_liable_maintenance"
+## [19] "telephone"                 "foreign_worker"           
+## [21] "response"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{length}\NormalTok{(}\FunctionTok{colnames}\NormalTok{(data))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 21
+\end{verbatim}
+
+\hypertarget{statistics-of-the-dataset}{%
+\subsection{Statistics of the dataset}\label{statistics-of-the-dataset}}
+
+\hypertarget{entire-data-set}{%
+\subsubsection{Entire data set}\label{entire-data-set}}
+
+A summarization of the entire data set
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  checking_account   duration_months credit_history       purpose         
+##  Length:1000        Min.   : 4.0    Length:1000        Length:1000       
+##  Class :character   1st Qu.:12.0    Class :character   Class :character  
+##  Mode  :character   Median :18.0    Mode  :character   Mode  :character  
+##                     Mean   :20.9                                         
+##                     3rd Qu.:24.0                                         
+##                     Max.   :72.0                                         
+##  credit_amount     savings          present_employment_since installment_rate
+##  Min.   :  250   Length:1000        Length:1000              Min.   :1.000   
+##  1st Qu.: 1366   Class :character   Class :character         1st Qu.:2.000   
+##  Median : 2320   Mode  :character   Mode  :character         Median :3.000   
+##  Mean   : 3271                                               Mean   :2.973   
+##  3rd Qu.: 3972                                               3rd Qu.:4.000   
+##  Max.   :18424                                               Max.   :4.000   
+##  personal_status_sex other_deptors      present_residence   property        
+##  Length:1000         Length:1000        Min.   :1.000     Length:1000       
+##  Class :character    Class :character   1st Qu.:2.000     Class :character  
+##  Mode  :character    Mode  :character   Median :3.000     Mode  :character  
+##                                         Mean   :2.845                       
+##                                         3rd Qu.:4.000                       
+##                                         Max.   :4.000                       
+##    age_years     other_installment_plans   housing          existing_credits
+##  Min.   :19.00   Length:1000             Length:1000        Min.   :1.000   
+##  1st Qu.:27.00   Class :character        Class :character   1st Qu.:1.000   
+##  Median :33.00   Mode  :character        Mode  :character   Median :1.000   
+##  Mean   :35.55                                              Mean   :1.407   
+##  3rd Qu.:42.00                                              3rd Qu.:2.000   
+##  Max.   :75.00                                              Max.   :4.000   
+##      job            people_liable_maintenance  telephone        
+##  Length:1000        Min.   :1.000             Length:1000       
+##  Class :character   1st Qu.:1.000             Class :character  
+##  Mode  :character   Median :1.000             Mode  :character  
+##                     Mean   :1.155                               
+##                     3rd Qu.:1.000                               
+##                     Max.   :2.000                               
+##  foreign_worker        response  
+##  Length:1000        Min.   :0.0  
+##  Class :character   1st Qu.:0.0  
+##  Mode  :character   Median :0.0  
+##                     Mean   :0.3  
+##                     3rd Qu.:1.0  
+##                     Max.   :1.0
+\end{verbatim}
+
+\hypertarget{specific-columns}{%
+\subsubsection{Specific columns}\label{specific-columns}}
+
+Purposes for loans
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(}\FunctionTok{factor}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{purpose))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            business           car (new)          car (used) domestic appliances 
+##                  97                 234                 103                  12 
+##           education furniture/equipment              others    radio/television 
+##                  50                 181                  12                 280 
+##             repairs          retraining 
+##                  22                   9
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{barplot}\NormalTok{(}\FunctionTok{summary}\NormalTok{(}\FunctionTok{factor}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{purpose)))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{data_analysis_files/figure-latex/unnamed-chunk-6-1.pdf}
+
+Mean duration of loans
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mean\_months }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{duration\_months)}
+\NormalTok{mean\_months}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 20.903
+\end{verbatim}
+
+Total number of loans with a duration higher than 20
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sum}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{duration\_months }\SpecialCharTok{\textgreater{}} \DecValTok{20}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 446
+\end{verbatim}
+
+\hypertarget{sub-selections-of-dataframes}{%
+\section{Sub-selections of
+DataFrames}\label{sub-selections-of-dataframes}}
+
+Sub-select a specific cell:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data[}\DecValTok{1}\NormalTok{,}\DecValTok{4}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "radio/television"
+\end{verbatim}
+
+Select multiple rows, and columns by name.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data[}\DecValTok{5}\SpecialCharTok{:}\DecValTok{20}\NormalTok{, }\FunctionTok{c}\NormalTok{(}\StringTok{"duration\_months"}\NormalTok{ ,}\StringTok{"purpose"}\NormalTok{, }\StringTok{"response"}\NormalTok{)]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    duration_months             purpose response
+## 5               24           car (new)        1
+## 6               36           education        0
+## 7               24 furniture/equipment        0
+## 8               36          car (used)        0
+## 9               12    radio/television        0
+## 10              30           car (new)        1
+## 11              12           car (new)        1
+## 12              48            business        1
+## 13              12    radio/television        0
+## 14              24           car (new)        1
+## 15              15           car (new)        0
+## 16              24    radio/television        1
+## 17              24    radio/television        0
+## 18              30            business        0
+## 19              24          car (used)        1
+## 20              24    radio/television        0
+\end{verbatim}
+
+\hypertarget{filtering-data-frames}{%
+\section{Filtering Data Frames}\label{filtering-data-frames}}
+
+\hypertarget{individual-filters}{%
+\subsection{Individual filters}\label{individual-filters}}
+
+Loans with a duration higher than 50 months
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data\_high\_duration }\OtherTok{\textless{}{-}}\NormalTok{ data[data}\SpecialCharTok{$}\NormalTok{duration\_months }\SpecialCharTok{\textgreater{}} \DecValTok{50}\NormalTok{, ]}
+\NormalTok{data\_high\_duration}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         checking_account duration_months
+## 30         ... <  0 euro              60
+## 79   No checking account              54
+## 96  0 <= ... <  102 euro              54
+## 135  No checking account              60
+## 256 0 <= ... <  102 euro              60
+## 333 0 <= ... <  102 euro              60
+## 374  No checking account              60
+## 375 0 <= ... <  102 euro              60
+## 617 0 <= ... <  102 euro              60
+## 638  No checking account              60
+## 673  No checking account              60
+## 678 0 <= ... <  102 euro              72
+## 686  No checking account              60
+## 715 0 <= ... <  102 euro              60
+## 939 0 <= ... <  102 euro              60
+## 974        ... <  0 euro              60
+##                                                 credit_history          purpose
+## 30                             delay in paying off in the past         business
+## 79                no credits taken/ all credits paid back duly       car (used)
+## 96                no credits taken/ all credits paid back duly         business
+## 135                   existing credits paid back duly till now radio/television
+## 256                            delay in paying off in the past radio/television
+## 333                   existing credits paid back duly till now        car (new)
+## 374 critical account/other credits existing (not at this bank)        car (new)
+## 375                    all credits at this bank paid back duly           others
+## 617                            delay in paying off in the past radio/television
+## 638                            delay in paying off in the past radio/television
+## 673                   existing credits paid back duly till now        car (new)
+## 678                   existing credits paid back duly till now radio/television
+## 686                   existing credits paid back duly till now        car (new)
+## 715                   existing credits paid back duly till now        car (new)
+## 939                   existing credits paid back duly till now        education
+## 974                   existing credits paid back duly till now         business
+##     credit_amount                     savings present_employment_since
+## 30           6836              ... <  51 euro            .. >= 7 years
+## 79           9436 unknown/ no savings account      1  <= ... < 4 years
+## 96          15945              ... <  51 euro             ... < 1 year
+## 135         10144       51 <= ... <  255 euro      4  <= ... < 7 years
+## 256          7418 unknown/ no savings account      1  <= ... < 4 years
+## 333          7408       51 <= ... <  255 euro             ... < 1 year
+## 374         13756 unknown/ no savings account            .. >= 7 years
+## 375         14782       51 <= ... <  255 euro            .. >= 7 years
+## 617          9157 unknown/ no savings account      1  <= ... < 4 years
+## 638         15653              ... <  51 euro      4  <= ... < 7 years
+## 673         10366              ... <  51 euro            .. >= 7 years
+## 678          5595       51 <= ... <  255 euro      1  <= ... < 4 years
+## 686          6527 unknown/ no savings account      1  <= ... < 4 years
+## 715         14027              ... <  51 euro      4  <= ... < 7 years
+## 939          6288              ... <  51 euro      1  <= ... < 4 years
+## 974          7297              ... <  51 euro            .. >= 7 years
+##     installment_rate                 personal_status_sex other_deptors
+## 30                 3                     male   : single          none
+## 79                 2                     male   : single          none
+## 96                 3                     male   : single          none
+## 135                2 female : divorced/separated/married          none
+## 256                1                     male   : single          none
+## 333                4 female : divorced/separated/married          none
+## 374                2                     male   : single          none
+## 375                3 female : divorced/separated/married          none
+## 617                2                     male   : single          none
+## 638                2                     male   : single          none
+## 673                2                     male   : single          none
+## 678                2            male   : married/widowed          none
+## 686                4                     male   : single          none
+## 715                4                     male   : single          none
+## 939                4                     male   : single          none
+## 974                4                     male   : single  co-applicant
+##     present_residence
+## 30                  4
+## 79                  2
+## 96                  4
+## 135                 4
+## 256                 1
+## 333                 2
+## 374                 4
+## 375                 4
+## 617                 2
+## 638                 4
+## 673                 4
+## 678                 2
+## 686                 4
+## 715                 2
+## 939                 4
+## 974                 4
+##                                                                    property
+## 30                                                    unknown / no property
+## 79  (if not real estate) building society savings agreement/ life insurance
+## 96                                                    unknown / no property
+## 135                                                             real estate
+## 256                                                             real estate
+## 333 (if not real estate) building society savings agreement/ life insurance
+## 374                                                   unknown / no property
+## 375                                                   unknown / no property
+## 617                                                   unknown / no property
+## 638                    (if not optin 1 or 2) car or other, not in attribute
+## 673 (if not real estate) building society savings agreement/ life insurance
+## 678                    (if not optin 1 or 2) car or other, not in attribute
+## 686                                                   unknown / no property
+## 715                                                   unknown / no property
+## 939                                                   unknown / no property
+## 974                                                   unknown / no property
+##     age_years other_installment_plans  housing existing_credits
+## 30         63                    none      own                2
+## 79         39                    none      own                1
+## 96         58                    none     rent                1
+## 135        21                    none      own                1
+## 256        27                    none      own                1
+## 333        24                    none      own                1
+## 374        63                    bank for free                1
+## 375        60                    bank for free                2
+## 617        27                    none for free                1
+## 638        21                    none      own                2
+## 673        42                    none      own                1
+## 678        24                    none      own                1
+## 686        34                    none for free                1
+## 715        27                    none      own                1
+## 939        42                    none for free                1
+## 974        36                    none     rent                1
+##                                                              job
+## 30                                   skilled employee / official
+## 79                                          unskilled - resident
+## 96                                   skilled employee / official
+## 135                                  skilled employee / official
+## 256                                         unskilled - resident
+## 333 management/ self-employed/highly qualified employee/ officer
+## 374 management/ self-employed/highly qualified employee/ officer
+## 375 management/ self-employed/highly qualified employee/ officer
+## 617 management/ self-employed/highly qualified employee/ officer
+## 638                                  skilled employee / official
+## 673 management/ self-employed/highly qualified employee/ officer
+## 678                                  skilled employee / official
+## 686                                  skilled employee / official
+## 715 management/ self-employed/highly qualified employee/ officer
+## 939                                  skilled employee / official
+## 974                                  skilled employee / official
+##     people_liable_maintenance                                telephone
+## 30                          1 yes, registered under the customers name
+## 79                          2                                     none
+## 96                          1 yes, registered under the customers name
+## 135                         1 yes, registered under the customers name
+## 256                         1                                     none
+## 333                         1                                     none
+## 374                         1 yes, registered under the customers name
+## 375                         1 yes, registered under the customers name
+## 617                         1                                     none
+## 638                         1 yes, registered under the customers name
+## 673                         1 yes, registered under the customers name
+## 678                         1                                     none
+## 686                         2 yes, registered under the customers name
+## 715                         1 yes, registered under the customers name
+## 939                         1                                     none
+## 974                         1                                     none
+##     foreign_worker response
+## 30             yes        1
+## 79             yes        0
+## 96             yes        1
+## 135            yes        0
+## 256            yes        0
+## 333            yes        1
+## 374            yes        0
+## 375            yes        1
+## 617            yes        0
+## 638            yes        0
+## 673            yes        0
+## 678            yes        1
+## 686            yes        0
+## 715            yes        1
+## 939            yes        1
+## 974            yes        1
+\end{verbatim}
+
+What are the purposes of these high duration loans?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(}\FunctionTok{factor}\NormalTok{(data\_high\_duration}\SpecialCharTok{$}\NormalTok{purpose))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         business        car (new)       car (used)        education 
+##                3                5                1                1 
+##           others radio/television 
+##                1                5
+\end{verbatim}
+
+\hypertarget{combined-filters}{%
+\subsection{Combined filters}\label{combined-filters}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data\_high\_amount\_radio }\OtherTok{\textless{}{-}}\NormalTok{ data[(data}\SpecialCharTok{$}\NormalTok{credit\_amount }\SpecialCharTok{\textgreater{}} \DecValTok{5000}\NormalTok{) }\SpecialCharTok{\&}\NormalTok{ (data}\SpecialCharTok{$}\NormalTok{purpose }\SpecialCharTok{==} \StringTok{"radio/television"}\NormalTok{)  ,]}
+\NormalTok{data\_high\_amount\_radio}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         checking_account duration_months
+## 2   0 <= ... <  102 euro              48
+## 57  0 <= ... <  102 euro              12
+## 58   No checking account              36
+## 81   No checking account              24
+## 117        ... <  0 euro              42
+## 135  No checking account              60
+## 153          >= 102 euro              36
+## 227 0 <= ... <  102 euro              48
+## 256 0 <= ... <  102 euro              60
+## 354        ... <  0 euro              12
+## 372  No checking account              18
+## 468  No checking account              48
+## 478          >= 102 euro              24
+## 553        ... <  0 euro              48
+## 570        ... <  0 euro              48
+## 572  No checking account              30
+## 617 0 <= ... <  102 euro              60
+## 638  No checking account              60
+## 658  No checking account              48
+## 678 0 <= ... <  102 euro              72
+## 684  No checking account              24
+## 731 0 <= ... <  102 euro              24
+## 754  No checking account              30
+## 834 0 <= ... <  102 euro              24
+## 880  No checking account              30
+## 922  No checking account              48
+## 969  No checking account              42
+##                                                 credit_history          purpose
+## 2                     existing credits paid back duly till now radio/television
+## 57                    existing credits paid back duly till now radio/television
+## 58  critical account/other credits existing (not at this bank) radio/television
+## 81                    existing credits paid back duly till now radio/television
+## 117                   existing credits paid back duly till now radio/television
+## 135                   existing credits paid back duly till now radio/television
+## 153                   existing credits paid back duly till now radio/television
+## 227                   existing credits paid back duly till now radio/television
+## 256                            delay in paying off in the past radio/television
+## 354               no credits taken/ all credits paid back duly radio/television
+## 372 critical account/other credits existing (not at this bank) radio/television
+## 468                            delay in paying off in the past radio/television
+## 478                   existing credits paid back duly till now radio/television
+## 553                   existing credits paid back duly till now radio/television
+## 570                   existing credits paid back duly till now radio/television
+## 572 critical account/other credits existing (not at this bank) radio/television
+## 617                            delay in paying off in the past radio/television
+## 638                            delay in paying off in the past radio/television
+## 658                   existing credits paid back duly till now radio/television
+## 678                   existing credits paid back duly till now radio/television
+## 684 critical account/other credits existing (not at this bank) radio/television
+## 731                            delay in paying off in the past radio/television
+## 754 critical account/other credits existing (not at this bank) radio/television
+## 834                   existing credits paid back duly till now radio/television
+## 880 critical account/other credits existing (not at this bank) radio/television
+## 922                            delay in paying off in the past radio/television
+## 969                   existing credits paid back duly till now radio/television
+##     credit_amount                     savings present_employment_since
+## 2            5951              ... <  51 euro      1  <= ... < 4 years
+## 57           6468 unknown/ no savings account               unemployed
+## 58           9566              ... <  51 euro      1  <= ... < 4 years
+## 81           5943 unknown/ no savings account             ... < 1 year
+## 117          7174 unknown/ no savings account      4  <= ... < 7 years
+## 135         10144       51 <= ... <  255 euro      4  <= ... < 7 years
+## 153          5848              ... <  51 euro      1  <= ... < 4 years
+## 227         10961              .. >= 511 euro      4  <= ... < 7 years
+## 256          7418 unknown/ no savings account      1  <= ... < 4 years
+## 354          6199              ... <  51 euro      1  <= ... < 4 years
+## 372          6070              ... <  51 euro            .. >= 7 years
+## 468          7238 unknown/ no savings account            .. >= 7 years
+## 478          5152              ... <  51 euro      4  <= ... < 7 years
+## 553          6999              ... <  51 euro      4  <= ... < 7 years
+## 570          6758              ... <  51 euro      1  <= ... < 4 years
+## 572          5954              ... <  51 euro      4  <= ... < 7 years
+## 617          9157 unknown/ no savings account      1  <= ... < 4 years
+## 638         15653              ... <  51 euro      4  <= ... < 7 years
+## 658         10222 unknown/ no savings account      4  <= ... < 7 years
+## 678          5595       51 <= ... <  255 euro      1  <= ... < 4 years
+## 684          5103              ... <  51 euro             ... < 1 year
+## 731          6403              ... <  51 euro             ... < 1 year
+## 754          5771              ... <  51 euro      4  <= ... < 7 years
+## 834          5084 unknown/ no savings account            .. >= 7 years
+## 880          6742 unknown/ no savings account      4  <= ... < 7 years
+## 922         12749  255 euro <= ... < 511 euro      4  <= ... < 7 years
+## 969          7166 unknown/ no savings account      4  <= ... < 7 years
+##     installment_rate                 personal_status_sex other_deptors
+## 2                  2 female : divorced/separated/married          none
+## 57                 2                     male   : single          none
+## 58                 2 female : divorced/separated/married          none
+## 81                 1 female : divorced/separated/married          none
+## 117                4 female : divorced/separated/married          none
+## 135                2 female : divorced/separated/married          none
+## 153                4                     male   : single          none
+## 227                1                     male   : single  co-applicant
+## 256                1                     male   : single          none
+## 354                4                     male   : single          none
+## 372                3                     male   : single          none
+## 468                3                     male   : single          none
+## 478                4                     male   : single          none
+## 553                1            male   : married/widowed     guarantor
+## 570                3 female : divorced/separated/married          none
+## 572                3                     male   : single  co-applicant
+## 617                2                     male   : single          none
+## 638                2                     male   : single          none
+## 658                4                     male   : single          none
+## 678                2            male   : married/widowed          none
+## 684                3            male   : married/widowed          none
+## 731                1                     male   : single          none
+## 754                4 female : divorced/separated/married          none
+## 834                2 female : divorced/separated/married          none
+## 880                2                     male   : single          none
+## 922                4                     male   : single          none
+## 969                2            male   : married/widowed          none
+##     present_residence
+## 2                   2
+## 57                  1
+## 58                  2
+## 81                  1
+## 117                 3
+## 135                 4
+## 153                 1
+## 227                 2
+## 256                 1
+## 354                 2
+## 372                 4
+## 468                 3
+## 478                 2
+## 553                 1
+## 570                 2
+## 572                 2
+## 617                 2
+## 638                 4
+## 658                 3
+## 678                 2
+## 684                 3
+## 731                 2
+## 754                 2
+## 834                 4
+## 880                 3
+## 922                 1
+## 969                 4
+##                                                                    property
+## 2                                                               real estate
+## 57                                                    unknown / no property
+## 58                     (if not optin 1 or 2) car or other, not in attribute
+## 81                     (if not optin 1 or 2) car or other, not in attribute
+## 117                    (if not optin 1 or 2) car or other, not in attribute
+## 135                                                             real estate
+## 153                    (if not optin 1 or 2) car or other, not in attribute
+## 227                                                   unknown / no property
+## 256                                                             real estate
+## 354 (if not real estate) building society savings agreement/ life insurance
+## 372                    (if not optin 1 or 2) car or other, not in attribute
+## 468                    (if not optin 1 or 2) car or other, not in attribute
+## 478                    (if not optin 1 or 2) car or other, not in attribute
+## 553                                                             real estate
+## 570                    (if not optin 1 or 2) car or other, not in attribute
+## 572                    (if not optin 1 or 2) car or other, not in attribute
+## 617                                                   unknown / no property
+## 638                    (if not optin 1 or 2) car or other, not in attribute
+## 658                    (if not optin 1 or 2) car or other, not in attribute
+## 678                    (if not optin 1 or 2) car or other, not in attribute
+## 684                                                   unknown / no property
+## 731                    (if not optin 1 or 2) car or other, not in attribute
+## 754                    (if not optin 1 or 2) car or other, not in attribute
+## 834                    (if not optin 1 or 2) car or other, not in attribute
+## 880 (if not real estate) building society savings agreement/ life insurance
+## 922                    (if not optin 1 or 2) car or other, not in attribute
+## 969 (if not real estate) building society savings agreement/ life insurance
+##     age_years other_installment_plans  housing existing_credits
+## 2          22                    none      own                1
+## 57         52                    none      own                1
+## 58         31                  stores      own                2
+## 81         44                    none      own                2
+## 117        30                    none      own                1
+## 135        21                    none      own                1
+## 153        24                    none      own                1
+## 227        27                    bank      own                2
+## 256        27                    none      own                1
+## 354        28                    none     rent                2
+## 372        33                    none      own                2
+## 468        32                    bank      own                2
+## 478        25                    bank      own                1
+## 553        34                    none      own                2
+## 570        31                    none      own                1
+## 572        38                    none      own                1
+## 617        27                    none for free                1
+## 638        21                    none      own                2
+## 658        37                  stores      own                1
+## 678        24                    none      own                1
+## 684        47                    none for free                3
+## 731        33                    none      own                1
+## 754        25                    none      own                2
+## 834        42                    none      own                1
+## 880        36                    none      own                2
+## 922        37                    none      own                1
+## 969        29                    none     rent                1
+##                                                              job
+## 2                                    skilled employee / official
+## 57  management/ self-employed/highly qualified employee/ officer
+## 58                                   skilled employee / official
+## 81                                   skilled employee / official
+## 117 management/ self-employed/highly qualified employee/ officer
+## 135                                  skilled employee / official
+## 153                                  skilled employee / official
+## 227                                  skilled employee / official
+## 256                                         unskilled - resident
+## 354                                  skilled employee / official
+## 372                                  skilled employee / official
+## 468                                  skilled employee / official
+## 478                                  skilled employee / official
+## 553                                  skilled employee / official
+## 570                                  skilled employee / official
+## 572                                  skilled employee / official
+## 617 management/ self-employed/highly qualified employee/ officer
+## 638                                  skilled employee / official
+## 658                                  skilled employee / official
+## 678                                  skilled employee / official
+## 684                                  skilled employee / official
+## 731                                  skilled employee / official
+## 754                                  skilled employee / official
+## 834                                  skilled employee / official
+## 880                                  skilled employee / official
+## 922 management/ self-employed/highly qualified employee/ officer
+## 969                                  skilled employee / official
+##     people_liable_maintenance                                telephone
+## 2                           1                                     none
+## 57                          1 yes, registered under the customers name
+## 58                          1                                     none
+## 81                          1 yes, registered under the customers name
+## 117                         1 yes, registered under the customers name
+## 135                         1 yes, registered under the customers name
+## 153                         1                                     none
+## 227                         1 yes, registered under the customers name
+## 256                         1                                     none
+## 354                         1 yes, registered under the customers name
+## 372                         1 yes, registered under the customers name
+## 468                         2                                     none
+## 478                         1                                     none
+## 553                         1 yes, registered under the customers name
+## 570                         1 yes, registered under the customers name
+## 572                         1                                     none
+## 617                         1                                     none
+## 638                         1 yes, registered under the customers name
+## 658                         1 yes, registered under the customers name
+## 678                         1                                     none
+## 684                         1 yes, registered under the customers name
+## 731                         1                                     none
+## 754                         1                                     none
+## 834                         1 yes, registered under the customers name
+## 880                         1                                     none
+## 922                         1 yes, registered under the customers name
+## 969                         1 yes, registered under the customers name
+##     foreign_worker response
+## 2              yes        1
+## 57             yes        1
+## 58             yes        0
+## 81             yes        1
+## 117            yes        1
+## 135            yes        0
+## 153            yes        0
+## 227            yes        1
+## 256            yes        0
+## 354            yes        1
+## 372            yes        0
+## 468            yes        0
+## 478            yes        0
+## 553            yes        1
+## 570            yes        1
+## 572            yes        0
+## 617            yes        0
+## 638            yes        0
+## 658            yes        0
+## 678            yes        1
+## 684            yes        0
+## 731            yes        0
+## 754            yes        0
+## 834            yes        0
+## 880            yes        0
+## 922            yes        0
+## 969            yes        0
+\end{verbatim}
+
+\hypertarget{creating-categories-in-r}{%
+\subsection{Creating categories in R}\label{creating-categories-in-r}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data}\SpecialCharTok{$}\NormalTok{age\_class }\OtherTok{\textless{}{-}} \FunctionTok{cut}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{age\_years, }
+                      \AttributeTok{breaks =} \FunctionTok{c}\NormalTok{(}\DecValTok{18}\NormalTok{, }\DecValTok{25}\NormalTok{, }\DecValTok{50}\NormalTok{, }\DecValTok{65}\NormalTok{, }\DecValTok{100}\NormalTok{), }
+                      \AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"young"}\NormalTok{, }\StringTok{"adult"}\NormalTok{, }\StringTok{"senior"}\NormalTok{, }\StringTok{"retired"}\NormalTok{)) }
+\end{Highlighting}
+\end{Shaded}
+
+Only selecting the age\_years and age\_class columns
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data[,}\FunctionTok{c}\NormalTok{(}\StringTok{"age\_years"}\NormalTok{, }\StringTok{"age\_class"}\NormalTok{)]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      age_years age_class
+## 1           67   retired
+## 2           22     young
+## 3           49     adult
+## 4           45     adult
+## 5           53    senior
+## 6           35     adult
+## 7           53    senior
+## 8           35     adult
+## 9           61    senior
+## 10          28     adult
+## 11          25     young
+## 12          24     young
+## 13          22     young
+## 14          60    senior
+## 15          28     adult
+## 16          32     adult
+## 17          53    senior
+## 18          25     young
+## 19          44     adult
+## 20          31     adult
+## 21          48     adult
+## 22          44     adult
+## 23          48     adult
+## 24          44     adult
+## 25          26     adult
+## 26          36     adult
+## 27          39     adult
+## 28          42     adult
+## 29          34     adult
+## 30          63    senior
+## 31          36     adult
+## 32          27     adult
+## 33          30     adult
+## 34          57    senior
+## 35          33     adult
+## 36          25     young
+## 37          31     adult
+## 38          37     adult
+## 39          37     adult
+## 40          24     young
+## 41          30     adult
+## 42          26     adult
+## 43          44     adult
+## 44          24     young
+## 45          58    senior
+## 46          35     adult
+## 47          39     adult
+## 48          23     young
+## 49          39     adult
+## 50          28     adult
+## 51          29     adult
+## 52          30     adult
+## 53          25     young
+## 54          31     adult
+## 55          57    senior
+## 56          26     adult
+## 57          52    senior
+## 58          31     adult
+## 59          23     young
+## 60          23     young
+## 61          27     adult
+## 62          50     adult
+## 63          61    senior
+## 64          25     young
+## 65          26     adult
+## 66          48     adult
+## 67          29     adult
+## 68          22     young
+## 69          37     adult
+## 70          25     young
+## 71          30     adult
+## 72          46     adult
+## 73          51    senior
+## 74          41     adult
+## 75          40     adult
+## 76          66   retired
+## 77          34     adult
+## 78          51    senior
+## 79          39     adult
+## 80          22     young
+## 81          44     adult
+## 82          47     adult
+## 83          24     young
+## 84          58    senior
+## 85          52    senior
+## 86          29     adult
+## 87          27     adult
+## 88          47     adult
+## 89          30     adult
+## 90          28     adult
+## 91          56    senior
+## 92          54    senior
+## 93          33     adult
+## 94          20     young
+## 95          54    senior
+## 96          58    senior
+## 97          61    senior
+## 98          34     adult
+## 99          36     adult
+## 100         36     adult
+## 101         41     adult
+## 102         24     young
+## 103         24     young
+## 104         35     adult
+## 105         26     adult
+## 106         39     adult
+## 107         39     adult
+## 108         32     adult
+## 109         30     adult
+## 110         35     adult
+## 111         31     adult
+## 112         23     young
+## 113         28     adult
+## 114         25     young
+## 115         35     adult
+## 116         47     adult
+## 117         30     adult
+## 118         27     adult
+## 119         23     young
+## 120         36     adult
+## 121         25     young
+## 122         41     adult
+## 123         24     young
+## 124         63    senior
+## 125         27     adult
+## 126         30     adult
+## 127         40     adult
+## 128         30     adult
+## 129         34     adult
+## 130         29     adult
+## 131         24     young
+## 132         29     adult
+## 133         27     adult
+## 134         47     adult
+## 135         21     young
+## 136         38     adult
+## 137         27     adult
+## 138         66   retired
+## 139         35     adult
+## 140         44     adult
+## 141         27     adult
+## 142         30     adult
+## 143         27     adult
+## 144         22     young
+## 145         23     young
+## 146         30     adult
+## 147         39     adult
+## 148         51    senior
+## 149         28     adult
+## 150         46     adult
+## 151         42     adult
+## 152         38     adult
+## 153         24     young
+## 154         29     adult
+## 155         36     adult
+## 156         20     young
+## 157         48     adult
+## 158         45     adult
+## 159         38     adult
+## 160         34     adult
+## 161         36     adult
+## 162         30     adult
+## 163         36     adult
+## 164         70   retired
+## 165         36     adult
+## 166         32     adult
+## 167         33     adult
+## 168         20     young
+## 169         25     young
+## 170         31     adult
+## 171         33     adult
+## 172         26     adult
+## 173         34     adult
+## 174         33     adult
+## 175         26     adult
+## 176         53    senior
+## 177         42     adult
+## 178         52    senior
+## 179         31     adult
+## 180         65    senior
+## 181         28     adult
+## 182         30     adult
+## 183         40     adult
+## 184         50     adult
+## 185         36     adult
+## 186         31     adult
+## 187         74   retired
+## 188         68   retired
+## 189         20     young
+## 190         33     adult
+## 191         54    senior
+## 192         34     adult
+## 193         36     adult
+## 194         29     adult
+## 195         21     young
+## 196         34     adult
+## 197         28     adult
+## 198         27     adult
+## 199         36     adult
+## 200         40     adult
+## 201         52    senior
+## 202         27     adult
+## 203         26     adult
+## 204         21     young
+## 205         38     adult
+## 206         38     adult
+## 207         43     adult
+## 208         26     adult
+## 209         21     young
+## 210         55    senior
+## 211         33     adult
+## 212         45     adult
+## 213         50     adult
+## 214         66   retired
+## 215         51    senior
+## 216         39     adult
+## 217         31     adult
+## 218         23     young
+## 219         24     young
+## 220         64    senior
+## 221         26     adult
+## 222         23     young
+## 223         30     adult
+## 224         32     adult
+## 225         30     adult
+## 226         27     adult
+## 227         27     adult
+## 228         53    senior
+## 229         22     young
+## 230         22     young
+## 231         26     adult
+## 232         51    senior
+## 233         35     adult
+## 234         25     young
+## 235         42     adult
+## 236         30     adult
+## 237         23     young
+## 238         61    senior
+## 239         35     adult
+## 240         39     adult
+## 241         29     adult
+## 242         51    senior
+## 243         24     young
+## 244         27     adult
+## 245         35     adult
+## 246         25     young
+## 247         52    senior
+## 248         35     adult
+## 249         26     adult
+## 250         22     young
+## 251         39     adult
+## 252         46     adult
+## 253         24     young
+## 254         35     adult
+## 255         24     young
+## 256         27     adult
+## 257         35     adult
+## 258         29     adult
+## 259         23     young
+## 260         57    senior
+## 261         27     adult
+## 262         55    senior
+## 263         36     adult
+## 264         57    senior
+## 265         32     adult
+## 266         37     adult
+## 267         36     adult
+## 268         38     adult
+## 269         45     adult
+## 270         25     young
+## 271         32     adult
+## 272         37     adult
+## 273         36     adult
+## 274         28     adult
+## 275         34     adult
+## 276         32     adult
+## 277         26     adult
+## 278         49     adult
+## 279         32     adult
+## 280         29     adult
+## 281         23     young
+## 282         50     adult
+## 283         49     adult
+## 284         63    senior
+## 285         37     adult
+## 286         35     adult
+## 287         26     adult
+## 288         31     adult
+## 289         49     adult
+## 290         48     adult
+## 291         26     adult
+## 292         28     adult
+## 293         44     adult
+## 294         56    senior
+## 295         46     adult
+## 296         26     adult
+## 297         20     young
+## 298         45     adult
+## 299         43     adult
+## 300         32     adult
+## 301         54    senior
+## 302         42     adult
+## 303         37     adult
+## 304         49     adult
+## 305         44     adult
+## 306         33     adult
+## 307         24     young
+## 308         33     adult
+## 309         24     young
+## 310         22     young
+## 311         40     adult
+## 312         25     young
+## 313         26     adult
+## 314         25     young
+## 315         29     adult
+## 316         31     adult
+## 317         38     adult
+## 318         48     adult
+## 319         32     adult
+## 320         27     adult
+## 321         28     adult
+## 322         32     adult
+## 323         34     adult
+## 324         28     adult
+## 325         36     adult
+## 326         39     adult
+## 327         49     adult
+## 328         34     adult
+## 329         31     adult
+## 330         28     adult
+## 331         75   retired
+## 332         30     adult
+## 333         24     young
+## 334         24     young
+## 335         23     young
+## 336         44     adult
+## 337         23     young
+## 338         24     young
+## 339         28     adult
+## 340         31     adult
+## 341         24     young
+## 342         26     adult
+## 343         25     young
+## 344         33     adult
+## 345         37     adult
+## 346         43     adult
+## 347         23     young
+## 348         23     young
+## 349         34     adult
+## 350         32     adult
+## 351         23     young
+## 352         29     adult
+## 353         38     adult
+## 354         28     adult
+## 355         46     adult
+## 356         23     young
+## 357         49     adult
+## 358         26     adult
+## 359         28     adult
+## 360         23     young
+## 361         61    senior
+## 362         37     adult
+## 363         36     adult
+## 364         21     young
+## 365         25     young
+## 366         36     adult
+## 367         27     adult
+## 368         22     young
+## 369         42     adult
+## 370         40     adult
+## 371         36     adult
+## 372         33     adult
+## 373         23     young
+## 374         63    senior
+## 375         60    senior
+## 376         37     adult
+## 377         34     adult
+## 378         36     adult
+## 379         57    senior
+## 380         52    senior
+## 381         39     adult
+## 382         38     adult
+## 383         25     young
+## 384         26     adult
+## 385         26     adult
+## 386         25     young
+## 387         21     young
+## 388         40     adult
+## 389         27     adult
+## 390         27     adult
+## 391         30     adult
+## 392         19     young
+## 393         39     adult
+## 394         31     adult
+## 395         31     adult
+## 396         32     adult
+## 397         55    senior
+## 398         46     adult
+## 399         46     adult
+## 400         43     adult
+## 401         39     adult
+## 402         28     adult
+## 403         27     adult
+## 404         27     adult
+## 405         43     adult
+## 406         22     young
+## 407         43     adult
+## 408         27     adult
+## 409         26     adult
+## 410         28     adult
+## 411         20     young
+## 412         35     adult
+## 413         42     adult
+## 414         40     adult
+## 415         35     adult
+## 416         35     adult
+## 417         33     adult
+## 418         23     young
+## 419         31     adult
+## 420         33     adult
+## 421         20     young
+## 422         30     adult
+## 423         47     adult
+## 424         34     adult
+## 425         25     young
+## 426         21     young
+## 427         29     adult
+## 428         46     adult
+## 429         20     young
+## 430         55    senior
+## 431         74   retired
+## 432         29     adult
+## 433         36     adult
+## 434         33     adult
+## 435         25     young
+## 436         25     young
+## 437         23     young
+## 438         37     adult
+## 439         65    senior
+## 440         26     adult
+## 441         39     adult
+## 442         30     adult
+## 443         29     adult
+## 444         41     adult
+## 445         30     adult
+## 446         41     adult
+## 447         34     adult
+## 448         35     adult
+## 449         55    senior
+## 450         61    senior
+## 451         30     adult
+## 452         29     adult
+## 453         34     adult
+## 454         35     adult
+## 455         31     adult
+## 456         29     adult
+## 457         36     adult
+## 458         35     adult
+## 459         27     adult
+## 460         32     adult
+## 461         37     adult
+## 462         36     adult
+## 463         34     adult
+## 464         38     adult
+## 465         34     adult
+## 466         63    senior
+## 467         29     adult
+## 468         32     adult
+## 469         26     adult
+## 470         35     adult
+## 471         22     young
+## 472         23     young
+## 473         28     adult
+## 474         36     adult
+## 475         33     adult
+## 476         26     adult
+## 477         24     young
+## 478         25     young
+## 479         39     adult
+## 480         44     adult
+## 481         23     young
+## 482         26     adult
+## 483         57    senior
+## 484         30     adult
+## 485         44     adult
+## 486         47     adult
+## 487         52    senior
+## 488         62    senior
+## 489         35     adult
+## 490         26     adult
+## 491         26     adult
+## 492         42     adult
+## 493         27     adult
+## 494         38     adult
+## 495         39     adult
+## 496         20     young
+## 497         29     adult
+## 498         40     adult
+## 499         32     adult
+## 500         28     adult
+## 501         27     adult
+## 502         42     adult
+## 503         49     adult
+## 504         38     adult
+## 505         24     young
+## 506         27     adult
+## 507         36     adult
+## 508         34     adult
+## 509         28     adult
+## 510         45     adult
+## 511         26     adult
+## 512         32     adult
+## 513         26     adult
+## 514         20     young
+## 515         54    senior
+## 516         37     adult
+## 517         40     adult
+## 518         23     young
+## 519         43     adult
+## 520         36     adult
+## 521         44     adult
+## 522         24     young
+## 523         53    senior
+## 524         23     young
+## 525         26     adult
+## 526         30     adult
+## 527         31     adult
+## 528         42     adult
+## 529         31     adult
+## 530         41     adult
+## 531         32     adult
+## 532         28     adult
+## 533         41     adult
+## 534         26     adult
+## 535         25     young
+## 536         33     adult
+## 537         75   retired
+## 538         37     adult
+## 539         42     adult
+## 540         45     adult
+## 541         23     young
+## 542         60    senior
+## 543         31     adult
+## 544         34     adult
+## 545         61    senior
+## 546         43     adult
+## 547         37     adult
+## 548         32     adult
+## 549         24     young
+## 550         35     adult
+## 551         23     young
+## 552         45     adult
+## 553         34     adult
+## 554         27     adult
+## 555         67   retired
+## 556         22     young
+## 557         28     adult
+## 558         29     adult
+## 559         27     adult
+## 560         31     adult
+## 561         49     adult
+## 562         24     young
+## 563         29     adult
+## 564         37     adult
+## 565         37     adult
+## 566         23     young
+## 567         36     adult
+## 568         34     adult
+## 569         41     adult
+## 570         31     adult
+## 571         23     young
+## 572         38     adult
+## 573         26     adult
+## 574         22     young
+## 575         27     adult
+## 576         24     young
+## 577         27     adult
+## 578         33     adult
+## 579         27     adult
+## 580         27     adult
+## 581         30     adult
+## 582         49     adult
+## 583         26     adult
+## 584         33     adult
+## 585         52    senior
+## 586         20     young
+## 587         36     adult
+## 588         21     young
+## 589         47     adult
+## 590         60    senior
+## 591         58    senior
+## 592         42     adult
+## 593         36     adult
+## 594         20     young
+## 595         40     adult
+## 596         32     adult
+## 597         23     young
+## 598         36     adult
+## 599         31     adult
+## 600         32     adult
+## 601         45     adult
+## 602         30     adult
+## 603         34     adult
+## 604         28     adult
+## 605         23     young
+## 606         22     young
+## 607         74   retired
+## 608         50     adult
+## 609         33     adult
+## 610         45     adult
+## 611         22     young
+## 612         48     adult
+## 613         29     adult
+## 614         22     young
+## 615         22     young
+## 616         48     adult
+## 617         27     adult
+## 618         37     adult
+## 619         21     young
+## 620         49     adult
+## 621         27     adult
+## 622         32     adult
+## 623         38     adult
+## 624         22     young
+## 625         65    senior
+## 626         35     adult
+## 627         41     adult
+## 628         29     adult
+## 629         36     adult
+## 630         64    senior
+## 631         28     adult
+## 632         44     adult
+## 633         23     young
+## 634         19     young
+## 635         25     young
+## 636         47     adult
+## 637         28     adult
+## 638         21     young
+## 639         34     adult
+## 640         26     adult
+## 641         27     adult
+## 642         38     adult
+## 643         40     adult
+## 644         33     adult
+## 645         32     adult
+## 646         27     adult
+## 647         32     adult
+## 648         26     adult
+## 649         38     adult
+## 650         40     adult
+## 651         50     adult
+## 652         37     adult
+## 653         45     adult
+## 654         42     adult
+## 655         35     adult
+## 656         22     young
+## 657         41     adult
+## 658         37     adult
+## 659         28     adult
+## 660         41     adult
+## 661         23     young
+## 662         23     young
+## 663         50     adult
+## 664         35     adult
+## 665         50     adult
+## 666         27     adult
+## 667         34     adult
+## 668         27     adult
+## 669         43     adult
+## 670         47     adult
+## 671         27     adult
+## 672         31     adult
+## 673         42     adult
+## 674         24     young
+## 675         41     adult
+## 676         26     adult
+## 677         33     adult
+## 678         24     young
+## 679         64    senior
+## 680         26     adult
+## 681         56    senior
+## 682         37     adult
+## 683         33     adult
+## 684         47     adult
+## 685         31     adult
+## 686         34     adult
+## 687         27     adult
+## 688         30     adult
+## 689         35     adult
+## 690         31     adult
+## 691         25     young
+## 692         25     young
+## 693         29     adult
+## 694         44     adult
+## 695         28     adult
+## 696         50     adult
+## 697         29     adult
+## 698         38     adult
+## 699         24     young
+## 700         40     adult
+## 701         29     adult
+## 702         46     adult
+## 703         47     adult
+## 704         41     adult
+## 705         32     adult
+## 706         35     adult
+## 707         24     young
+## 708         25     young
+## 709         25     young
+## 710         37     adult
+## 711         32     adult
+## 712         35     adult
+## 713         46     adult
+## 714         25     young
+## 715         27     adult
+## 716         63    senior
+## 717         40     adult
+## 718         32     adult
+## 719         31     adult
+## 720         31     adult
+## 721         34     adult
+## 722         24     young
+## 723         24     young
+## 724         66   retired
+## 725         21     young
+## 726         41     adult
+## 727         47     adult
+## 728         25     young
+## 729         59    senior
+## 730         36     adult
+## 731         33     adult
+## 732         21     young
+## 733         44     adult
+## 734         28     adult
+## 735         37     adult
+## 736         29     adult
+## 737         23     young
+## 738         35     adult
+## 739         45     adult
+## 740         26     adult
+## 741         32     adult
+## 742         23     young
+## 743         41     adult
+## 744         22     young
+## 745         30     adult
+## 746         28     adult
+## 747         23     young
+## 748         37     adult
+## 749         26     adult
+## 750         33     adult
+## 751         49     adult
+## 752         23     young
+## 753         23     young
+## 754         25     young
+## 755         55    senior
+## 756         32     adult
+## 757         74   retired
+## 758         39     adult
+## 759         31     adult
+## 760         35     adult
+## 761         59    senior
+## 762         24     young
+## 763         24     young
+## 764         30     adult
+## 765         27     adult
+## 766         40     adult
+## 767         31     adult
+## 768         31     adult
+## 769         28     adult
+## 770         63    senior
+## 771         26     adult
+## 772         25     young
+## 773         36     adult
+## 774         52    senior
+## 775         66   retired
+## 776         25     young
+## 777         37     adult
+## 778         25     young
+## 779         38     adult
+## 780         67   retired
+## 781         25     young
+## 782         60    senior
+## 783         31     adult
+## 784         23     young
+## 785         60    senior
+## 786         35     adult
+## 787         40     adult
+## 788         38     adult
+## 789         50     adult
+## 790         27     adult
+## 791         39     adult
+## 792         41     adult
+## 793         27     adult
+## 794         51    senior
+## 795         32     adult
+## 796         22     young
+## 797         51    senior
+## 798         22     young
+## 799         54    senior
+## 800         35     adult
+## 801         54    senior
+## 802         48     adult
+## 803         24     young
+## 804         35     adult
+## 805         24     young
+## 806         24     young
+## 807         26     adult
+## 808         65    senior
+## 809         55    senior
+## 810         26     adult
+## 811         26     adult
+## 812         28     adult
+## 813         24     young
+## 814         54    senior
+## 815         46     adult
+## 816         54    senior
+## 817         62    senior
+## 818         24     young
+## 819         43     adult
+## 820         26     adult
+## 821         27     adult
+## 822         24     young
+## 823         41     adult
+## 824         47     adult
+## 825         35     adult
+## 826         30     adult
+## 827         33     adult
+## 828         36     adult
+## 829         47     adult
+## 830         38     adult
+## 831         44     adult
+## 832         23     young
+## 833         29     adult
+## 834         42     adult
+## 835         25     young
+## 836         48     adult
+## 837         21     young
+## 838         23     young
+## 839         63    senior
+## 840         46     adult
+## 841         29     adult
+## 842         28     adult
+## 843         23     young
+## 844         50     adult
+## 845         47     adult
+## 846         35     adult
+## 847         68   retired
+## 848         28     adult
+## 849         59    senior
+## 850         57    senior
+## 851         33     adult
+## 852         43     adult
+## 853         35     adult
+## 854         32     adult
+## 855         45     adult
+## 856         33     adult
+## 857         40     adult
+## 858         28     adult
+## 859         29     adult
+## 860         26     adult
+## 861         27     adult
+## 862         28     adult
+## 863         35     adult
+## 864         32     adult
+## 865         25     young
+## 866         20     young
+## 867         27     adult
+## 868         42     adult
+## 869         37     adult
+## 870         24     young
+## 871         40     adult
+## 872         46     adult
+## 873         26     adult
+## 874         24     young
+## 875         29     adult
+## 876         40     adult
+## 877         36     adult
+## 878         28     adult
+## 879         27     adult
+## 880         36     adult
+## 881         38     adult
+## 882         48     adult
+## 883         36     adult
+## 884         65    senior
+## 885         43     adult
+## 886         53    senior
+## 887         34     adult
+## 888         23     young
+## 889         34     adult
+## 890         40     adult
+## 891         43     adult
+## 892         46     adult
+## 893         38     adult
+## 894         34     adult
+## 895         29     adult
+## 896         31     adult
+## 897         28     adult
+## 898         35     adult
+## 899         33     adult
+## 900         42     adult
+## 901         43     adult
+## 902         44     adult
+## 903         42     adult
+## 904         40     adult
+## 905         36     adult
+## 906         20     young
+## 907         24     young
+## 908         27     adult
+## 909         46     adult
+## 910         33     adult
+## 911         34     adult
+## 912         25     young
+## 913         25     young
+## 914         28     adult
+## 915         31     adult
+## 916         32     adult
+## 917         32     adult
+## 918         68   retired
+## 919         33     adult
+## 920         39     adult
+## 921         28     adult
+## 922         37     adult
+## 923         22     young
+## 924         30     adult
+## 925         55    senior
+## 926         46     adult
+## 927         21     young
+## 928         39     adult
+## 929         58    senior
+## 930         43     adult
+## 931         24     young
+## 932         22     young
+## 933         30     adult
+## 934         42     adult
+## 935         23     young
+## 936         30     adult
+## 937         28     adult
+## 938         30     adult
+## 939         42     adult
+## 940         46     adult
+## 941         45     adult
+## 942         31     adult
+## 943         31     adult
+## 944         42     adult
+## 945         46     adult
+## 946         30     adult
+## 947         30     adult
+## 948         38     adult
+## 949         43     adult
+## 950         31     adult
+## 951         40     adult
+## 952         24     young
+## 953         28     adult
+## 954         26     adult
+## 955         29     adult
+## 956         57    senior
+## 957         49     adult
+## 958         37     adult
+## 959         45     adult
+## 960         30     adult
+## 961         30     adult
+## 962         47     adult
+## 963         29     adult
+## 964         35     adult
+## 965         22     young
+## 966         26     adult
+## 967         23     young
+## 968         54    senior
+## 969         29     adult
+## 970         40     adult
+## 971         22     young
+## 972         43     adult
+## 973         29     adult
+## 974         36     adult
+## 975         33     adult
+## 976         57    senior
+## 977         64    senior
+## 978         42     adult
+## 979         47     adult
+## 980         25     young
+## 981         49     adult
+## 982         33     adult
+## 983         28     adult
+## 984         26     adult
+## 985         30     adult
+## 986         25     young
+## 987         33     adult
+## 988         64    senior
+## 989         29     adult
+## 990         48     adult
+## 991         37     adult
+## 992         34     adult
+## 993         23     young
+## 994         30     adult
+## 995         50     adult
+## 996         31     adult
+## 997         40     adult
+## 998         38     adult
+## 999         23     young
+## 1000        27     adult
+\end{verbatim}
+
+Display how much values we have for each category:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{table}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{age\_class)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##   young   adult  senior retired 
+##     190     697      95      18
+\end{verbatim}
+
+\hypertarget{exploration-with-basic-visualisations}{%
+\section{Exploration with basic
+visualisations}\label{exploration-with-basic-visualisations}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{count\_age\_class }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{age\_class)}
+
+\FunctionTok{barplot}\NormalTok{(count\_age\_class, }\AttributeTok{main =} \StringTok{"Loans by age class"}\NormalTok{,}
+                         \AttributeTok{xlab =} \StringTok{"Age class"}\NormalTok{,}
+                         \AttributeTok{ylab =} \StringTok{"Count"}\NormalTok{,}
+                         \AttributeTok{col =} \StringTok{"\#fa6400"}\NormalTok{,}
+                         \AttributeTok{space =} \DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{data_analysis_files/figure-latex/unnamed-chunk-17-1.pdf}
+
+Boxplot
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{boxplot}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{credit\_amount,}
+        \AttributeTok{col =} \StringTok{"\#fa6400"}\NormalTok{,}
+        \AttributeTok{outline=}\ConstantTok{FALSE}\NormalTok{,}
+        \AttributeTok{notch =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{data_analysis_files/figure-latex/unnamed-chunk-18-1.pdf}
+
+Piecharts
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{pie}\NormalTok{(count\_age\_class, }
+    \AttributeTok{main=}\StringTok{"Age category"}\NormalTok{,}
+    \AttributeTok{sub=}\StringTok{"By our own categories"}\NormalTok{,}
+    \AttributeTok{col =} \FunctionTok{c}\NormalTok{(}\StringTok{"green"}\NormalTok{, }\StringTok{"blue"}\NormalTok{, }\StringTok{"yellow"}\NormalTok{, }\StringTok{"black"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{data_analysis_files/figure-latex/unnamed-chunk-19-1.pdf}
+
+Histogram
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{hist}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{credit\_amount, }\AttributeTok{breaks=}\DecValTok{500}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{data_analysis_files/figure-latex/unnamed-chunk-20-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(}\FunctionTok{density}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{age\_years))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{data_analysis_files/figure-latex/unnamed-chunk-21-1.pdf}
+
+\end{document}

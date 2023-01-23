@@ -1,0 +1,153 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+# Import the dplyr library
+
+```{r}
+library(dplyr)
+```
+
+
+```{r}
+data <- read.csv("~/Projects/r_training/data/german_data_clean.csv")
+```
+
+
+# Filtering a DataFrame
+
+Base R:
+
+```{r}
+younger_30 <- data[data$age_years < 30, c("age_years", "credit_amount")]
+younger_30 <- younger_30[sort(younger_30$age_years), ]
+```
+
+
+Now with dplyr:
+
+```{r}
+younger_30_b <- data %>%
+  filter(age_years < 30) %>%
+  select(age_years, credit_amount) %>%
+  arrange(desc(age_years))
+```
+
+ 
+ 
+## Specific subset
+
+
+List or requirements:
+
+* divorced men
+* Loans for "car (new)*, "radio/television", "furniture/equipment"
+* Columns: "age_years", "duration_months", "credit_amount", "purpose", "response"
+* Sorted on "credit_amount" from high to low
+
+```{r}
+unique(data$personal_status_sex)
+```
+
+```{r}
+unique(data$purpose)
+```
+
+
+```{r}
+
+selected_purposes <- c("car (new)", "radio/television", "furniture/equipment")
+
+subset_1 <- data %>%
+              filter(personal_status_sex == "male   : divorced/separated") %>%
+              filter(purpose %in% selected_purposes) %>%
+              select(age_years, duration_months, credit_amount, purpose, response) %>%
+              arrange(desc(credit_amount))
+
+```
+
+
+## Grouping
+
+
+```{r}
+subset_1 %>%
+  group_by(purpose) %>%
+  summarize(median_amount = median(credit_amount))
+```
+
+
+```{SQL, eval=FALSE}
+select purpose, SUM(purpose)
+from subset_1
+group by purpose
+
+```
+
+
+
+Assignment:
+
+```{r}
+
+selected_purposes_2 <- c("education", "business", "retraining", "others")
+
+subset_2 <- data %>%
+  filter(personal_status_sex == "female : divorced/separated/married") %>%
+  filter(age_years > 40) %>%
+  filter(purpose %in% selected_purposes_2) %>%
+  select(age_years, personal_status_sex, credit_amount,  purpose, response) %>%
+  group_by(purpose) %>%
+  summarize(mean_amount = mean(credit_amount)) %>%
+  arrange(desc(mean_amount))
+
+
+subset_2
+  
+```
+
+
+## Seperate subsets for each gender
+
+
+```{r}
+data <- data %>%
+            mutate(gender = ifelse(personal_status_sex == "female : divorced/separated/married", 
+                         "female", 
+                         "male"))
+
+```
+
+```{r}
+data_gender_grouped <- data %>%
+  select(gender, purpose, credit_amount) %>%
+  group_by(gender, purpose) %>%
+  summarize(mean_amount = mean(credit_amount)) %>%
+  arrange(desc(mean_amount))
+
+data_gender_grouped
+
+```
+
+
+```{r}
+men_set <- data_gender_grouped %>%
+  filter(gender == "male")
+
+women_set <- data_gender_grouped %>%
+  filter(gender == "female")
+
+```
+
+
+```{r}
+men_amounts <- men_set$mean_amount
+names(men_amounts) <- men_set$purpose
+
+women_amounts <- women_set$mean_amount
+names(women_amounts) <- women_set$purpose
+
+barplot(men_amounts, col="blue", las=2)
+barplot(women_amounts, col="pink", las=2)
+```

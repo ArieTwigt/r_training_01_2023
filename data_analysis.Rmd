@@ -1,0 +1,219 @@
+---
+title: "Loan Application Analysis"
+author: "Arie Twigt"
+output:
+  word_document:
+    toc: yes
+    toc_depth: '3'
+  html_notebook:
+    toc: yes
+    toc_depth: 3
+  pdf_document:
+    toc: yes
+    toc_depth: '3'
+---
+
+
+```{r, echo=FALSE}
+data <- read.csv("~/Projects/r_training/data/german_data_clean.csv")
+```
+
+
+# Data analysis
+
+
+## Dimensions
+
+
+The dimensions of the dataset
+
+```{r}
+dim(data)
+nrow(data)
+ncol(data)
+```
+
+
+The data set has the following columns:
+
+```{r}
+colnames(data)
+length(colnames(data))
+```
+
+## Statistics of the dataset
+
+### Entire data set
+
+
+A summarization of the entire data set
+
+
+```{r}
+summary(data)
+```
+
+
+### Specific columns
+
+
+Purposes for loans
+
+```{r}
+summary(factor(data$purpose))
+```
+
+
+```{r}
+barplot(summary(factor(data$purpose)))
+```
+
+
+
+Mean duration of loans
+
+```{r}
+mean_months <- mean(data$duration_months)
+mean_months
+
+```
+
+
+Total number of loans with a duration higher than 20
+
+```{r}
+sum(data$duration_months > 20)
+```
+
+
+
+# Sub-selections of DataFrames
+
+
+Sub-select a specific cell:
+
+```{r}
+data[1,4]
+```
+
+
+Select multiple rows, and columns by name.
+
+
+```{r}
+data[5:20, c("duration_months" ,"purpose", "response")]
+```
+
+
+# Filtering Data Frames
+
+## Individual filters
+
+Loans with a duration higher than 50 months
+
+```{r}
+
+data_high_duration <- data[data$duration_months > 50, ]
+data_high_duration
+```
+
+
+What are the purposes of these high duration loans?
+
+
+```{r}
+summary(factor(data_high_duration$purpose))
+```
+
+
+## Combined filters
+
+
+```{r}
+
+data_high_amount_radio <- data[(data$credit_amount > 5000) & (data$purpose == "radio/television")  ,]
+data_high_amount_radio
+```
+
+
+## Creating categories in R
+
+
+```{r}
+
+data$age_class <- cut(data$age_years, 
+                      breaks = c(18, 25, 50, 65, 100), 
+                      labels = c("young", "adult", "senior", "retired")) 
+```
+
+Only selecting the age_years and age_class columns
+
+```{r}
+data[,c("age_years", "age_class")]
+```
+
+
+Display how much values we have for each category:
+
+
+```{r}
+table(data$age_class)
+```
+
+
+# Exploration with basic visualisations
+
+
+```{r}
+count_age_class <- table(data$age_class)
+
+barplot(count_age_class, main = "Loans by age class",
+                         xlab = "Age class",
+                         ylab = "Count",
+                         col = "#fa6400",
+                         space = 0)
+```
+
+
+Boxplot
+
+
+```{r}
+boxplot(data$credit_amount,
+        col = "#fa6400",
+        outline=FALSE,
+        notch = TRUE)
+```
+
+
+Piecharts
+
+
+```{r}
+pie(count_age_class, 
+    main="Age category",
+    sub="By our own categories",
+    col = c("green", "blue", "yellow", "black"))
+```
+
+
+
+Histogram
+
+
+```{r}
+hist(data$credit_amount, breaks=500)
+```
+
+
+```{r}
+plot(density(data$age_years))
+```
+
+## Ordering the dataset
+
+
+```{r}
+data[order(data$duration_months, decreasing = TRUE), ]
+```
+
